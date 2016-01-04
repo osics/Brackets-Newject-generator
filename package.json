@@ -1,0 +1,21 @@
+{
+  "name": "newject.generator",
+  "title": "NewJect Generator",
+  "description": "HTML5,Jquery,CSS Standard Skeleton Generator for new Brackets documents",
+  "homepage": "http://extra-theme.com",
+  "version": "1.0.1",
+  "author": "Hisham Fawaz (https://github.com/extra-theme)",
+  "license": "MIT",
+  "engines": {
+    "brackets": ">=1.5.0"
+  },
+  "keywords": [
+    "html",
+    "jquery",
+    "css",
+    "skeleton",
+    "generator",
+    "project",
+    "HTML Document"
+  ]
+}
