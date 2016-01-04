@@ -1,11 +1,11 @@
 
 define(function (require, exports, module) {
-    "use strict";
+    
 
     var CommandManager = brackets.getModule("command/CommandManager"),
         Menus          = brackets.getModule("command/Menus"),
         EditorManager  = brackets.getModule("editor/EditorManager");
-
+    var Dialogs        = brackets.getModule('widgets/Dialogs');
 
     // Function to run when the menu item is clicked
     function NewJect_HTML() {
@@ -34,28 +34,62 @@ define(function (require, exports, module) {
       }
  
     }
+
+    
     function NewJect_jquery(){
              var editor = EditorManager.getCurrentFullEditor();
       if (editor) {
         var insertionPos = editor.getCursorPos();
         editor.document.batchOperation(function () {
-        var jquerycontent =  '$("document").ready(function(){\n\r'+
-        '//Your code here\n\r'+'});';
+        var jquerycontent =  '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>\n<script type="text/javascript">\n\r $("document").ready(function(){\n\r'+
+        '//Your code here\n\r'+'});\n\r </script>';
           editor.document.replaceRange(jquerycontent, insertionPos);
         });
       } 
     }
-
+    
+        function NewJect_css(){
+             var editor = EditorManager.getCurrentFullEditor();
+      if (editor) {
+        var insertionPos = editor.getCursorPos();
+        editor.document.batchOperation(function () {
+        var csscontent =  'html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address,'+
+        'big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul,'+ 'li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption,'+ 'footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark, audio, video '+
+'{margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}article, aside, details, figcaption, figure,footer,'+
+'header, hgroup, menu, nav, section {display: block;}body {line-height: 1;}ol, ul'+
+'{list-style: none;}blockquote, q {quotes: none;}blockquote:before, blockquote:after,q:before, q:after {content: "";content: none;}'+
+'table {border-collapse: collapse;border-spacing: 0;}';
+          editor.document.replaceRange(csscontent, insertionPos);
+        });
+      } 
+    }
+    
+    function NewJect_about(){
+        var messageabout = 'NewJect Generator<br>'+'Description:HTML5,Jquery,CSS Standard Skeleton Generator for new Brackets documents<br>'
+        +'Author: <a title="http://facebook.com/hsmfawaz" href="http://facebook.com/hsmfawaz">Hisham fawaz</a><br>Website: <a title="http://extra-theme.com" href="http://extra-theme.com">Extra Theme</a><br>HomePage: <a title="https://github.com/extra-theme/Brackets-Newject-generator/" href="https://github.com/extra-theme/Brackets-Newject-generator/">Brackets-Newject-generator</a>';
+        Dialogs.showModalDialog('a',"About Extension",messageabout);
+    }
 
     var NewjectHTML = "htmlskeleton.newject";
     CommandManager.register("HTML5", NewjectHTML, NewJect_HTML);
+    
     var NewjectJQUERY = "jqueryskeleton.newject";
     CommandManager.register("JQUERY", NewjectJQUERY, NewJect_jquery);
+    
+    var NewjectCSS = "cssskeleton.newject";
+    CommandManager.register("CSS Reset", NewjectCSS, NewJect_css);
+
+    var Newjectabout = "about.newject";
+    CommandManager.register("About Extension", Newjectabout, NewJect_about);
 
     Menus.addMenu('NewJect','newject.main');
     var menu = Menus.getMenu('newject.main');
     menu.addMenuItem(NewjectHTML);
     menu.addMenuItem(NewjectJQUERY);
+    menu.addMenuItem(NewjectCSS);
+    menu.addMenuDivider();
+    menu.addMenuItem(Newjectabout);
+    
 
 
 });
