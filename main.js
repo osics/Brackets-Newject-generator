@@ -41,7 +41,10 @@ define(function (require, exports, module) {
       if (editor) {
         var insertionPos = editor.getCursorPos();
         editor.document.batchOperation(function () {
-        var jquerycontent =  '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>\n<script type="text/javascript">\n\r $("document").ready(function(){\n\r'+
+        var jquerycontent =  '<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>"></script>\n<script type="text/javascript">\n\r $("document").ready(function(){\n\r'+
         '//Your code here\n\r'+'});\n\r </script>';
           editor.document.replaceRange(jquerycontent, insertionPos);
         });
